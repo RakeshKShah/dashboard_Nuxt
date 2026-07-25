@@ -1,0 +1,34 @@
+# Node dependencies (never copy host node_modules into image)
+node_modules
+.pnpm-store
+
+# Nuxt / Nitro build outputs (built inside image via `pnpm run build`)
+.output
+.nuxt
+.nitro
+.cache
+dist
+
+# Framework-specific build outputs for other stacks (defensive)
+.next
+.svelte-kit
+
+# Wrong-manager lockfile: this is a pnpm repo — exclude npm's lockfile so
+# COPY . . cannot overwrite the pnpm-managed node_modules in the image
+package-lock.json
+npm-shrinkwrap.json
+
+# Test artifacts and recordings (generated at runtime, not needed at build time)
+.codevalid/ui/recording
+.codevalid/ui/run-results
+test-results
+playwright-report
+
+# Misc
+.DS_Store
+*.log
+.env
+.env.*
+!.env.example
+.git
+.github
